@@ -28,6 +28,14 @@ public class Jaslet {
         });
     }
 
+    public CompletableFuture<JasletResult> query(String sql, Object[] params) {
+        return CompletableFuture.supplyAsync(() -> querySync(sql, params), executor);
+    }
+
+    public CompletableFuture<JasletResult> execute(String sql, Object[] params) {
+        return CompletableFuture.supplyAsync(() -> executeSync(sql, params), executor);
+    }
+
     public void close() {
         try {
             connection.close();
@@ -36,6 +44,28 @@ public class Jaslet {
         }
 
         executor.shutdown();
+    }
+
+    private JasletResult querySync(String sql, Object[] params) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            bindParameters(stmt, params);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return parseResultSet(rs);
+            }
+        } catch (SQLException e) {
+            throw new JasletException("Jaslet: Falha ao executar query", e);
+        }
+    }
+
+    private JasletResult executeSync(String sql, Object[] params) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            bindParameters(stmt, params);
+            int affectedRows = stmt.executeUpdate();
+            return new JasletResult(Collections.emptyList(), affectedRows);
+        } catch (SQLException e) {
+            throw new JasletException("Jaslet: Falha ao executar comando", e);
+        }
     }
 
     private void bindParameters(PreparedStatement stmt, Object[] params) throws SQLException {
