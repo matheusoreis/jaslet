@@ -6,7 +6,7 @@ Asynchronous SQLite interface for Java. All operations return `CompletableFuture
 
 ```gradle
 dependencies {
-    implementation 'com.github.matheusoreis:jaslet:1.0.0'
+    implementation 'com.github.matheusoreis:jaslet:1.0.2'
 }
 ```
 
