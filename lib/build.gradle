@@ -6,6 +6,10 @@ plugins {
 group = 'com.github.matheusoreis'
 version = '1.0.0'
 
+base {
+    archivesName = 'jaslet'
+}
+
 repositories {
     mavenCentral()
 }
