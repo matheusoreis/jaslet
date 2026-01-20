@@ -6,7 +6,7 @@ Asynchronous SQLite interface for Java. All operations return `CompletableFuture
 
 ```gradle
 repositories {
-    maven { url 'https://jitpack.io' }
+    maven { url = 'https://jitpack.io' }
 }
 
 dependencies {
