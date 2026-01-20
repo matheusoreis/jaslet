@@ -5,6 +5,10 @@ Asynchronous SQLite interface for Java. All operations return `CompletableFuture
 ## Installation
 
 ```gradle
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
 dependencies {
     implementation 'com.github.matheusoreis:jaslet:1.0.2'
 }
