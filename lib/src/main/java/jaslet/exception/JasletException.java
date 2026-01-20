@@ -1,6 +1,6 @@
 package jaslet.exception;
 
-public class JasletException extends Exception {
+public class JasletException extends RuntimeException {
 	public JasletException(String message) {
 		super(message);
 	}
