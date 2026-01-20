@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.matheusoreis:jaslet:1.0.2'
+    implementation 'io.github.matheusoreis:jaslet:1.0.2'
 }
 ```
 
